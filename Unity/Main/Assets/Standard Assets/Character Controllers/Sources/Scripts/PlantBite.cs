@@ -2,19 +2,15 @@
 using System.Collections;
 
 public class PlantBite : MonoBehaviour {
-	//#pragma strict
 
-	//private HingeJoint jawTop;// : HingeJoint;
-	//private var jawBottom : HingeJoint;
-	//private var isBiting : boolean;
+	public int velocityDown = 500;
+	public int velocityUp = 50;
 
-	public HingeJoint jawTop;
-	public HingeJoint jawBottom;
-	//public HingeJoint tempTop;
-	//public HingeJoint tempBottom;
-	public JointMotor topMotor;
-	public JointMotor bottomMotor;
-	public bool isBiting;
+	private HingeJoint jawTop;
+	private HingeJoint jawBottom;
+	private JointMotor topMotor;
+	private JointMotor bottomMotor;
+	private bool isBiting;
 
 	public void Start () {
 		this.isBiting = false;
@@ -27,29 +23,16 @@ public class PlantBite : MonoBehaviour {
 			}
 		}
 
-		//tempTop = new HingeJoint();
-		//tempBottom = new HingeJoint();
-		topMotor = new JointMotor();
-		bottomMotor = new JointMotor();
+		topMotor = jawTop.motor;
+		bottomMotor = jawBottom.motor;
 	}
 
 	public void Update () {
-		/*
-		tempTop = new HingeJoint();
-		tempTop = jawTop;
-		tempBottom = new HingeJoint();
-		tempBottom = jawBottom;
-		*/
-		//topMotor = new JointMotor();
-		//bottomMotor = new JointMotor();
-
 		if(this.isBiting)
 		{
 			if(jawTop.motor.targetVelocity < 0) {
 				if(jawTop.angle <= -39) {
-					//jawTop.motor.targetVelocity = 50;
-					//jawTop.motor.force = 10;
-					topMotor.targetVelocity = 50;
+					topMotor.targetVelocity = velocityUp;
 					topMotor.force = 10;
 				}
 			}
@@ -61,9 +44,7 @@ public class PlantBite : MonoBehaviour {
 
 			if(jawBottom.motor.targetVelocity > 0) {
 				if(jawBottom.angle >= 39) {
-					//jawBottom.motor.targetVelocity = -50;
-					//jawBottom.motor.force = 10;
-					bottomMotor.targetVelocity = -50;
+					bottomMotor.targetVelocity = -velocityUp;
 					bottomMotor.force = 10;
 				}
 			}
@@ -73,9 +54,6 @@ public class PlantBite : MonoBehaviour {
 				}
 			}
 		}
-
-		jawTop.motor = topMotor;
-		jawBottom.motor = bottomMotor;
 	}
 
 	void bite() {
@@ -90,14 +68,9 @@ public class PlantBite : MonoBehaviour {
 			jawBottom.useMotor = true;
 			jawBottom.useSpring = false;
 
-			//jawTop.motor.targetVelocity = -500;
-			//jawBottom.motor.targetVelocity = 500;
-			topMotor.targetVelocity = -500;
-			bottomMotor.targetVelocity = 500;
+			topMotor.targetVelocity = -velocityDown;
+			bottomMotor.targetVelocity = velocityDown;
 
-
-			//jawTop.motor.force = 100;
-			//jawBottom.motor.force = 100;
 			topMotor.force = 100;
 			bottomMotor.force = 100;
 		}
