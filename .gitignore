@@ -21,3 +21,6 @@ sysinfo.txt
 #override files to not ignore
 !.gitkeep
 !.gitignore
+*.meta
+
+*.meta
