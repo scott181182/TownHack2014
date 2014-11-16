@@ -14,6 +14,7 @@ public class FlyMovement : MonoBehaviour {
 	private float downScale;
 	private int vertDir;
 	private int vertHold;
+	private Vector3 holdAngle;
 
 	// Use this for initialization
 	void Start () {
@@ -36,10 +37,10 @@ public class FlyMovement : MonoBehaviour {
 			vertDir = 1;
 		}
 
-		transform.
+		holdAngle = transform.eulerAngles;
 		transform.RotateAround (origin, Vector3.up, 180 * Time.deltaTime);
 		transform.position += vertDir * Vector3.up * Time.deltaTime;
-		transform.eulerAngles = new Vector3(0,0,0);
+		transform.eulerAngles = holdAngle;
 
 		origin.z += UnityEngine.Random.Range(-0.03f, 0.03f);
 
