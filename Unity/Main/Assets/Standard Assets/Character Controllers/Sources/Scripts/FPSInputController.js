@@ -1,12 +1,15 @@
 private var motor : CharacterMotor;
+private var plant : PlantBite;
 
 // Use this for initialization
 function Awake () {
 	motor = GetComponent(CharacterMotor);
+	plant = GetComponent(PlantBite);
 }
 
 // Update is called once per frame
 function Update () {
+	/*
 	// Get the input vector from keyboard or analog stick
 	var directionVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 	
@@ -26,12 +29,18 @@ function Update () {
 		// Multiply the normalized direction vector by the modified length
 		directionVector = directionVector * directionLength;
 	}
+	*/
 	
 	// Apply the direction to the CharacterMotor
-	motor.inputMoveDirection = transform.rotation * directionVector;
-	motor.inputJump = Input.GetButton("Jump");
+	//motor.inputMoveDirection = transform.rotation * directionVector;
+	//motor.inputJump = Input.GetButton("Jump");
+	
+	if(Input.GetButton("Jump")) {
+		plant.bite();
+	}
 }
 
 // Require a character controller to be attached to the same game object
 @script RequireComponent (CharacterMotor)
+@script RequireComponent (PlantBite)
 @script AddComponentMenu ("Character/FPS Input Controller")
