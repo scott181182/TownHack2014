@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SphereScript : MonoBehaviour {
+public class CubeScript : MonoBehaviour {
 
 	public Sprite[] sprites;
 	public float framesPerSecond;

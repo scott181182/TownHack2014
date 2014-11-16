@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class SphereScript : MonoBehaviour {
+public class FlyMovement : MonoBehaviour {
 
 	public Sprite[] sprites;
 	public float framesPerSecond;
